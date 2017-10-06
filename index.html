@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Dodge</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  </head>
+
+  <body>
+    <h2>Dodge</h2>
+
+    <ol id="instructions-list">
+      <li>You move in the game with your mouse.</li>
+      <li>Avoid red dots. You start with three lives; each collision with a red dot costs one life.</li>
+      <li>Hit green dots for points. Each green dot is worth one point.</li>
+      <li>Every 15 seconds, the level goes up, and the red dots move faster.</li>
+    </ol>
+
+    <button id="new-game-button" onclick="start()">New Game</button>
+
+    <div id="game-info">
+      <div id="life"></div>
+      <div id="score"></div>
+      <div id="level"></div>
+      <div id="timer"></div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script type="application/javascript" src="lib/bundle.js"></script>
+  </body>
+</html>
