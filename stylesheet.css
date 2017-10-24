@@ -16,6 +16,9 @@ body h2 {
 #instructions-list {
   color: white;
   margin-bottom: 25px;
+  font-family: 'Titillium Web', sans-serif;
+  width: 600px;
+  padding-left: 150px;
 }
 
 button:focus {outline:0;}
@@ -31,6 +34,7 @@ button:focus {outline:0;}
 #game-info {
   display: flex;
   color: white;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #game-info div {
