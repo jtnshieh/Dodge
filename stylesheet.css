@@ -1,12 +1,12 @@
 body {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  /*flex-direction: column;*/
   align-items: center;
   background-color: black;
 }
 
-body h2 {
+body div h2 {
   color: red;
   font-size: 40px;
   margin-bottom: 3px;
@@ -17,8 +17,9 @@ body h2 {
   color: white;
   margin-bottom: 25px;
   font-family: 'Titillium Web', sans-serif;
-  width: 600px;
-  padding-left: 150px;
+  width: 300px;
+  padding: 0px;
+  list-style-position: inside;
 }
 
 button:focus {outline:0;}
@@ -43,4 +44,8 @@ button:focus {outline:0;}
 
 #canvas {
   border: 1px solid white;
+}
+
+.left-page {
+  margin-right: 50px;
 }
