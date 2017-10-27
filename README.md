@@ -1,8 +1,6 @@
 # Dodge
 
-![]()
-
-<a href="https://imgflip.com/gif/1y7h4h"><img src="https://i.imgflip.com/1y7h4h.gif" title="made at imgflip.com"/></a>
+![](https://github.com/jtnshieh/Dodge/blob/master/docs/Dodge.gif)
 
 [Dodge](https://jtnshieh.github.io/Dodge/), built with plain Javascript and Canvas, is a fun, interactive game in which the user attempts to dodge red dots and acquire green dots.
 
