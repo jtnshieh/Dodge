@@ -2,76 +2,44 @@
 
 ![](https://github.com/jtnshieh/Dodge/blob/master/docs/Dodge.gif)
 
-[Dodge](https://jtnshieh.github.io/Dodge/), built with plain Javascript and Canvas, is a fun, interactive game in which the user attempts to dodge red dots and acquire green dots.
+[Dodge](https://jtnshieh.github.io/Dodge/), built with plain Javascript and Canvas, is a fun, interactive game in which the user attempts to dodge red asteroids and acquire green asteroids in outer space.
 
 ## Features & Implementation
 
-* Users can upload pictures to their profile, which show up on both their profile and the photo feed page.
+### Smooth Dynamic Animation
 
-* Users can comment on a post and delete their comment. They can also like or unlike a post.
+Using the method `requestAnimationFrame()`, Dodge continuously calls the function `animate()` on the HTML canvas element to create seamless, beautiful graphics. The game features asteroids of various velocities and sizes.
 
-### Secure Authentication
+### Collision Detection
 
-Users can sign up or log in to Memorylane using a secure authentication system. The demo login feature allows anyone to explore Memorylane's various features without being a registered user.
+The game detects ship and asteroid collision by comparing the distance between the two objects and the sum of their radii. If the sum is greater than the distance, the method `isCollidedWith(otherObject)` would return true.
+The explicit return of false when the concerned object's radius is 0 prevents the ship from colliding once the game is over, and the ship's radius is set to 0.
 
-![Memorylane Login](https://github.com/jtnshieh/Memorylane/blob/master/app/assets/images/Memorylane_login.png)
-
-### Feed
-
-Users can comment on posts and delete their comments, as well as like or unlike a post.
-
-![Memorylane Feed](https://github.com/jtnshieh/Memorylane/blob/master/app/assets/images/Memorylane_feed.png)
-
-Something interesting and challenging that occurred while I was constructing my feed page was getting the `PostIndexContainer` to re-render to display the comment posted by the user instantaneously. To accomplish this, I had to attach a promise of `fetchPost` to `createComment` inside my `handleSubmit` function in my presentational component `Comments`. This promise returns a "new" post - which in reality is the same post, just with the additional comment - which then triggers the re-rendering.
 ````
-handleSubmit(e) {
-    e.preventDefault();
-    const comment = Object.assign({}, this.state);
-    comment['post_id'] = this.props.post.id;
-    this.props.createComment(comment).then(() => {
-      this.props.fetchPost(this.props.post.id);
-      this.setState({"body":""});
-    });
+isCollidedWith(otherObject) {
+  if (this.radius === 0) {
+    return false;
   }
+  const centerDist = Util.dist(this.pos, otherObject.pos);
+  return centerDist < (this.radius + otherObject.radius);
+}
 ````
-### Post Upload
+### Intuitive Game Control
 
-Users can upload posts.
+Dodge makes game control intuitive by basing it on the user's mouse movement. Using the function `getPosition(el)`, Dodge gets the location of the canvas and then creates an event listener that sets the ship's position to wherever the mouse is on the canvas.
 
-![Memorylane Upload](https://github.com/jtnshieh/Memorylane/blob/master/app/assets/images/Memorylane_upload.png)
+````
+const canvasPosition = game.getPosition(canvas);
 
-## Technologies
-
-### Backend
-
-* Ruby On Rails
-
-* JBuilder
-
-* PostgreSQL Database
-
-* Heroku
-
-### Frontend
-
-* React/Redux
-
-* Javscript
-
-* SCSS/CSS
-
-* npm
-
-* Webpack
-
-### Other
-
-* Cloudinary for users' profile pictures and post pictures storage.
-
-* BCrypt for password-salting and hashing for a secure authentication system.
+canvas.addEventListener("mousemove", (e) => {
+  let mouseX = e.clientX - canvasPosition.x;
+  let mouseY = e.clientY - canvasPosition.y;
+  game.ship.pos = [mouseX, mouseY];
+});
+````
 
 ## Additional Features
 
-* Add the Follow feature.
+* Change the asteroids' and ship's shapes to be more realistic, and plot out their outermost coordinates to update the collision logic accordingly.
 
-* Implement user search.
+* Create cool collision animation.
